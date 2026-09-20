@@ -22,6 +22,7 @@ private:
     QString password;
     QString username;
     QString service;
+    int id; //Set when created, allows for telling accounts apart
 };
 
 #endif // ACCOUNT_H
