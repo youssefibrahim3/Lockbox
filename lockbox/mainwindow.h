@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "vault.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,7 +18,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+private slots:
+    void on_accountList_currentRowChanged(int currentRow);
+
+    void on_addAccountButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Vault vault;
+    int activeAccountIndex;
 };
 #endif // MAINWINDOW_H
