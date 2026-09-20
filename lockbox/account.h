@@ -14,14 +14,17 @@ public:
     QString getPassword()const { return password; }
     QString getUsername()const { return username; }
     QString getService()const { return service; }
+    QString getNotes()const { return notes; }
 
     void setPassword(QString pass) { password = pass; }
     void setUsername(QString user) { username = user; }
     void setService(QString serv) { service = serv; }
+    void setNotes(QString note) { notes = note; }
 private:
     QString password;
     QString username;
     QString service;
+    QString notes;
 };
 
 #endif // ACCOUNT_H
