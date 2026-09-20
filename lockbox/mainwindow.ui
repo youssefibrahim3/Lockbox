@@ -96,28 +96,28 @@
       <property name="topMargin">
        <number>15</number>
       </property>
-      <item row="0" column="0">
+      <item row="1" column="0">
        <widget class="QLabel" name="usernameLabel">
         <property name="text">
          <string>Username:</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="1" column="1">
        <widget class="QLineEdit" name="usernameEdit">
         <property name="placeholderText">
          <string>Username</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="QLabel" name="passwordLabel">
         <property name="text">
          <string>Password:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="2" column="1">
        <widget class="QLineEdit" name="passwordEdit">
         <property name="echoMode">
          <enum>QLineEdit::EchoMode::Password</enum>
@@ -127,36 +127,59 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="4" column="0">
        <widget class="QPushButton" name="showPassButton">
         <property name="text">
          <string>Show Password</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
+      <item row="4" column="1">
        <widget class="QPushButton" name="copyPasswordButton">
         <property name="text">
          <string>Copy Password</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="5" column="0">
        <widget class="QPushButton" name="saveButton">
         <property name="text">
          <string>Save Info</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
+      <item row="5" column="1">
        <widget class="QPushButton" name="deleteAccButton">
         <property name="text">
          <string>Delete Account</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QTextBrowser" name="textBrowser"/>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="3" column="1">
+       <widget class="QTextEdit" name="textEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="placeholderText">
+         <string>Notes</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
