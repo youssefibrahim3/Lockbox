@@ -28,6 +28,7 @@ void MainWindow::on_accountList_currentRowChanged(int rowIndex)
     Account& focusedAccount = vault.getAccount(activeAccountIndex);
     ui->usernameEdit->setText(focusedAccount.getUsername());
     ui->passwordEdit->setText(focusedAccount.getPassword());
+    ui->notesEdit->setPlainText(focusedAccount.getNotes());
 }
 
 
@@ -55,5 +56,6 @@ void MainWindow::on_saveButton_clicked()
     Account& focusedAccount = vault.getAccount(activeAccountIndex);
     focusedAccount.setUsername(ui->usernameEdit->text());
     focusedAccount.setPassword(ui->passwordEdit->text());
+    focusedAccount.setNotes(ui->notesEdit->toPlainText());
 }
 
