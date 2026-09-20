@@ -50,6 +50,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="viewMode">
+         <enum>QListView::ViewMode::ListMode</enum>
+        </property>
         <item>
          <property name="text">
           <string>Google</string>
@@ -60,19 +66,25 @@
           <string>Github</string>
          </property>
         </item>
-        <item>
-         <property name="text">
-          <string>Discord</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="addAccountButton">
-        <property name="text">
-         <string>Add Account</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLineEdit" name="serviceNameEdit">
+          <property name="placeholderText">
+           <string>Service Name</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="addAccountButton">
+          <property name="text">
+           <string>Add Account</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
@@ -115,37 +127,17 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0">
        <widget class="QPushButton" name="showPassButton">
         <property name="text">
-         <string>Show</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QPushButton" name="copyPasswordButton">
-        <property name="text">
-         <string>Copy Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QPushButton" name="editButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Edit</string>
+         <string>Show Password</string>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="deleteAccButton">
+       <widget class="QPushButton" name="copyPasswordButton">
         <property name="text">
-         <string>Delete Account</string>
+         <string>Copy Password</string>
         </property>
        </widget>
       </item>
@@ -155,6 +147,16 @@
          <string>Save Info</string>
         </property>
        </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="deleteAccButton">
+        <property name="text">
+         <string>Delete Account</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QTextBrowser" name="textBrowser"/>
       </item>
      </layout>
     </item>

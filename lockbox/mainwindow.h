@@ -23,6 +23,10 @@ private slots:
 
     void on_addAccountButton_clicked();
 
+    void on_showPassButton_clicked();
+
+    void on_saveButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Vault vault;
