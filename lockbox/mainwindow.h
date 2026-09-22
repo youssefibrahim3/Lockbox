@@ -27,6 +27,10 @@ private slots:
 
     void on_saveButton_clicked();
 
+    void on_deleteAccButton_clicked();
+
+    void on_copyPasswordButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Vault vault;
