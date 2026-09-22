@@ -5,6 +5,7 @@
 #include <QString>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QFile>
 #include "account.h"
 
 class Vault
@@ -24,8 +25,8 @@ public:
 
     int getNumberOfAccounts()const;
 
-    bool save(QString& filename);
-    bool load(QString& filename);
+    bool save(const QString& filepath);
+    bool load(const QString& filepath);
 private:
     std::vector<Account> accounts;
 };

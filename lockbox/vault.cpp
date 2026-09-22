@@ -1,5 +1,4 @@
 #include "vault.h"
-#include <QFile>
 
 Vault::Vault() {}
 
@@ -24,7 +23,7 @@ int Vault::getNumberOfAccounts()const {
     return accounts.size();
 }
 
-bool Vault::save(QString& filepath) {
+bool Vault::save(const QString& filepath) {
     QJsonArray json_arr;
     for (const Account& account : accounts) {
         QJsonObject json_obj;
@@ -52,6 +51,6 @@ bool Vault::save(QString& filepath) {
     return true;
 }
 
-bool Vault::load(QString& filename) {
+bool Vault::load(const QString& filepath) {
     return true;
 }
