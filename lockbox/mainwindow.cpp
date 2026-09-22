@@ -69,5 +69,10 @@ void MainWindow::on_deleteAccButton_clicked()
     activeAccountIndex = -1;
 }
 
+void MainWindow::on_copyPasswordButton_clicked()
+{
+    if (activeAccountIndex == -1) return;
+    ui->passwordEdit->copy();
+}
 
 
