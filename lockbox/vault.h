@@ -17,7 +17,7 @@ public:
     void setAccounts(std::vector<Account> newAccounts) { accounts = newAccounts; }
 
     void addAccount(Account account);
-    void addAccount(QString username, QString password, QString service);
+    void addAccount(QString username, QString password, QString service, QString notes);
 
     void removeAccount(int index);
 
