@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <QString>
+#include <QJsonArray>
+#include <QJsonObject>
 #include "account.h"
 
 class Vault
@@ -22,6 +24,8 @@ public:
 
     int getNumberOfAccounts()const;
 
+    bool save(QString& filename);
+    bool load(QString& filename);
 private:
     std::vector<Account> accounts;
 };
