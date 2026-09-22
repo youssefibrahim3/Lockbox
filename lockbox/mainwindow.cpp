@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Setting up filepath
     //QString filepath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/vault.json";
-    QString testing_filepath = "/vault.json";
+    QString testing_filepath = "vault.json";
 
     //Vault setup and data load
     vault = Vault();
@@ -25,6 +25,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_accountList_currentRowChanged(int rowIndex)
 {
+    if (rowIndex == -1) {
+        activeAccountIndex = -1;
+        return;
+    }
+
     qDebug() << "rowIndex:" << rowIndex;
     qDebug() << "vault size" << vault.getNumberOfAccounts();
 
