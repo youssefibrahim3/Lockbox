@@ -8,7 +8,7 @@ class Account
 public:
     //Constructors
     Account();
-    Account(QString username, QString password, QString service) : username(username), password(password), service(service) {}
+    Account(QString username, QString password, QString service, QString notes) : username(username), password(password), service(service), notes(notes) {}
 
     //Getters/Setters
     QString getPassword()const { return password; }
