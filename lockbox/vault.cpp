@@ -6,8 +6,8 @@ void Vault::addAccount(Account account) {
     accounts.push_back(account);
 }
 
-void Vault::addAccount(QString username, QString password, QString service) {
-    Account newAccount = Account(username, password, service);
+void Vault::addAccount(QString username, QString password, QString service, QString notes) {
+    Account newAccount = Account(username, password, service, notes);
     accounts.push_back(newAccount);
 }
 
@@ -52,5 +52,32 @@ bool Vault::save(const QString& filepath) {
 }
 
 bool Vault::load(const QString& filepath) {
+    QFile save_file(filepath);
+
+    if (!save_file.open(QIODevice::ReadOnly)) {
+        return false;
+    }
+
+    QByteArray save_data = save_file.readAll();
+
+    QJsonDocument load_doc(QJsonDocument::fromJson(save_data));
+
+    QJsonObject loaded_obj = load_doc.object();
+
+    save_file.close();
+
+    //now read off of it and populate
+
+    accounts.clear();
+
+    const QJsonArray loaded_arr = loaded_obj["vault"].toArray();
+    for (const QJsonValue &account : loaded_arr) {
+        QJsonObject account_obj = account.toObject();
+        addAccount(account_obj["username"].toString(),
+                   account_obj["password"].toString(),
+                   account_obj["service"].toString(),
+                   account["notes"].toString());
+    }
+
     return true;
 }
