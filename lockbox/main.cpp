@@ -12,6 +12,6 @@ int main(int argc, char *argv[])
     if (l.exec() == QDialog::Accepted) {
         MainWindow w;
         w.show();
+        return QApplication::exec();
     }
-    return QApplication::exec();
 }
