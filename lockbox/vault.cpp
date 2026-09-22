@@ -43,6 +43,7 @@ bool Vault::save(const QString& filepath) {
 
     QFile save_file(filepath);
     if (!save_file.open(QIODevice::WriteOnly)) {
+        qDebug() << "Saving to " << filepath << " failed.";
         return false;
     }
 
@@ -55,6 +56,7 @@ bool Vault::load(const QString& filepath) {
     QFile save_file(filepath);
 
     if (!save_file.open(QIODevice::ReadOnly)) {
+        qDebug() << "Loading from " << filepath << " failed.";
         return false;
     }
 
