@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QCloseEvent>
 #include "vault.h"
 
 QT_BEGIN_NAMESPACE
@@ -31,6 +32,7 @@ private slots:
 
     void on_copyPasswordButton_clicked();
 
+    void closeEvent(QCloseEvent *event) override;
 private:
     Ui::MainWindow *ui;
     Vault vault;

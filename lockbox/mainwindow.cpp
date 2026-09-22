@@ -81,3 +81,7 @@ void MainWindow::on_copyPasswordButton_clicked()
     ui->passwordEdit->copy();
 }
 
+void MainWindow::closeEvent(QCloseEvent *event) {
+    vault.save("vault.json");
+    event->accept();
+}
