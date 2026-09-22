@@ -1,14 +1,20 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <QStandardPaths>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //Setting up filepath
+    //QString filepath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/vault.json";
+    QString testing_filepath = "/vault.json";
+
+    //Vault setup and data load
     vault = Vault();
-    vault.addAccount("GoogleAccount123","TheGoogleAccount","Google");
-    vault.addAccount("GithubAccount123","TheGithubAccount","Github");
+    vault.load(testing_filepath);
 
 }
 
@@ -35,7 +41,7 @@ void MainWindow::on_accountList_currentRowChanged(int rowIndex)
 void MainWindow::on_addAccountButton_clicked()
 {
     //Insert new empty account
-    vault.addAccount("", "", ui->serviceNameEdit->text());
+    vault.addAccount("", "", ui->serviceNameEdit->text(), "");
     ui->accountList->addItem(ui->serviceNameEdit->text());
 }
 
@@ -74,5 +80,4 @@ void MainWindow::on_copyPasswordButton_clicked()
     if (activeAccountIndex == -1) return;
     ui->passwordEdit->copy();
 }
-
 
