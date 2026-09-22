@@ -56,16 +56,6 @@
         <property name="viewMode">
          <enum>QListView::ViewMode::ListMode</enum>
         </property>
-        <item>
-         <property name="text">
-          <string>Google</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Github</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item>

@@ -16,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent)
     vault = Vault();
     vault.load(testing_filepath);
 
+    //Add to account list
+    for (const Account& account : vault.getAccounts()) {
+        ui->accountList->addItem(account.getService());
+    }
 }
 
 MainWindow::~MainWindow()
@@ -25,7 +29,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_accountList_currentRowChanged(int rowIndex)
 {
-    if (rowIndex == -1) {
+    if (rowIndex < 0 || rowIndex >= vault.getNumberOfAccounts()) {
         activeAccountIndex = -1;
         return;
     }
