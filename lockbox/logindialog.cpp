@@ -12,3 +12,12 @@ LoginDialog::~LoginDialog()
 {
     delete ui;
 }
+
+void LoginDialog::on_loginButton_clicked()
+{
+    QString pass = "ASD"; //Temporary for testing
+    if (ui->passwordEdit->text() == pass) {
+        QDialog::accept();
+    }
+}
+
