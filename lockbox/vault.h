@@ -16,6 +16,9 @@ public:
     std::vector<Account> getAccounts()const { return accounts; }
     void setAccounts(std::vector<Account> newAccounts) { accounts = newAccounts; }
 
+    void setMasterPass(QString newPass) { masterPass = newPass; }
+    QString getMasterPass() { return masterPass; }
+
     void addAccount(Account account);
     void addAccount(QString username, QString password, QString service, QString notes);
 
@@ -29,6 +32,7 @@ public:
     bool load(const QString& filepath);
 private:
     std::vector<Account> accounts;
+    QString masterPass = "";
 };
 
 #endif // VAULT_H
