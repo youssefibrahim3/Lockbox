@@ -36,6 +36,7 @@ bool Vault::save(const QString& filepath) {
 
     QJsonObject vault_obj;
     vault_obj["vault"] = json_arr;
+    vault_obj["masterPassword"] = masterPass;
 
     QJsonDocument doc(vault_obj);
 
@@ -71,6 +72,8 @@ bool Vault::load(const QString& filepath) {
     //now read off of it and populate
 
     accounts.clear();
+
+    masterPass = loaded_obj["masterPassword"].toString();
 
     const QJsonArray loaded_arr = loaded_obj["vault"].toArray();
     for (const QJsonValue &account : loaded_arr) {
