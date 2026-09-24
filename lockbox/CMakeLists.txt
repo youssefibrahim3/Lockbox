@@ -26,6 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         account.h account.cpp
         vault.h vault.cpp
         logindialog.h logindialog.cpp logindialog.ui
+        createpassdialog.h createpassdialog.cpp createpassdialog.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET lockbox APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
