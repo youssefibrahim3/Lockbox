@@ -16,8 +16,7 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::on_loginButton_clicked()
 {
-    QString pass = "ASD"; //Temporary for testing
-    if (ui->passwordEdit->text() == pass) {
+    if (ui->passwordEdit->text() == vault.getMasterPass()) {
         QDialog::accept();
     }
 }
