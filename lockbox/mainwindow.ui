@@ -120,21 +120,14 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
+      <item row="7" column="1">
        <widget class="QPushButton" name="copyPasswordButton">
         <property name="text">
          <string>Copy Password</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
-       <widget class="QPushButton" name="saveButton">
-        <property name="text">
-         <string>Save Info</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
+      <item row="8" column="1">
        <widget class="QPushButton" name="deleteAccButton">
         <property name="text">
          <string>Delete Account</string>
@@ -181,6 +174,13 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item row="6" column="1">
+       <widget class="QPushButton" name="saveButton">
+        <property name="text">
+         <string>Save Info</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
