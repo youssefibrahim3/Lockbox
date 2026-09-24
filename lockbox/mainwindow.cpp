@@ -41,6 +41,9 @@ void MainWindow::on_accountList_currentRowChanged(int rowIndex)
     ui->usernameEdit->setText(focusedAccount.getUsername());
     ui->passwordEdit->setText(focusedAccount.getPassword());
     ui->notesEdit->setPlainText(focusedAccount.getNotes());
+
+    deleteConfirmation = false;
+    ui->deleteAccButton->setText("Delete Account");
 }
 
 
@@ -77,10 +80,16 @@ void MainWindow::on_saveButton_clicked()
 void MainWindow::on_deleteAccButton_clicked()
 {
     if (activeAccountIndex == -1) return;
-    ui->accountList->takeItem(activeAccountIndex);
-    vault.removeAccount(activeAccountIndex);
 
-    activeAccountIndex = -1;
+    if (deleteConfirmation == false) {
+        ui->deleteAccButton->setText("Are you sure?");
+        deleteConfirmation = true;
+    } else {
+        ui->accountList->takeItem(activeAccountIndex);
+        vault.removeAccount(activeAccountIndex);
+        activeAccountIndex = -1;
+        deleteConfirmation = false;
+    }
 }
 
 void MainWindow::on_copyPasswordButton_clicked()

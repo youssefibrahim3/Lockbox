@@ -37,6 +37,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Vault& vault;
-    int activeAccountIndex;
+    int activeAccountIndex = -1;
+    bool deleteConfirmation = false;
 };
 #endif // MAINWINDOW_H
