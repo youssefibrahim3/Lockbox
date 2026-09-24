@@ -2,6 +2,7 @@
 #define LOGINDIALOG_H
 
 #include <QDialog>
+#include "vault.h"
 
 namespace Ui {
 class LoginDialog;
@@ -20,6 +21,7 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
+    Vault& vault;
 };
 
 #endif // LOGINDIALOG_H

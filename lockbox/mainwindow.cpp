@@ -5,6 +5,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , vault(vault)
 {
     ui->setupUi(this);
 

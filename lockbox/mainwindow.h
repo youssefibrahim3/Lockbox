@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(Vault& vault, QWidget *parent = nullptr);
     ~MainWindow() override;
 
 private slots:
@@ -35,7 +35,7 @@ private slots:
     void closeEvent(QCloseEvent *event) override;
 private:
     Ui::MainWindow *ui;
-    Vault vault;
+    Vault& vault;
     int activeAccountIndex;
 };
 #endif // MAINWINDOW_H

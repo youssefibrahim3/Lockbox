@@ -1,7 +1,7 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
 
-LoginDialog::LoginDialog(QWidget *parent)
+LoginDialog::LoginDialog(Vault& vault, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::LoginDialog)
 {
