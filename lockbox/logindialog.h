@@ -19,6 +19,8 @@ public:
 private slots:
     void on_loginButton_clicked();
 
+    void on_showPassButton_clicked();
+
 private:
     Ui::LoginDialog *ui;
     Vault& vault;

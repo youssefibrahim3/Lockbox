@@ -29,8 +29,10 @@ QString CreatePassDialog::getPassword()const {
 void CreatePassDialog::on_showPassButton_clicked()
 {
     if (ui->passwordEdit->echoMode() == QLineEdit::Password) {
+        ui->showPassButton->setText("Hide");
         ui->passwordEdit->setEchoMode(QLineEdit::Normal);
     } else {
+        ui->showPassButton->setText("Show");
         ui->passwordEdit->setEchoMode(QLineEdit::Password);
     }
 }
@@ -39,8 +41,10 @@ void CreatePassDialog::on_showPassButton_clicked()
 void CreatePassDialog::on_showConfirmPassButton_clicked()
 {
     if (ui->confirmPasswordEdit->echoMode() == QLineEdit::Password) {
+        ui->showPassButton->setText("Hide");
         ui->confirmPasswordEdit->setEchoMode(QLineEdit::Normal);
     } else {
+        ui->showPassButton->setText("Show");
         ui->confirmPasswordEdit->setEchoMode(QLineEdit::Password);
     }
 }

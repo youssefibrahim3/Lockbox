@@ -59,8 +59,10 @@ void MainWindow::on_addAccountButton_clicked()
 void MainWindow::on_showPassButton_clicked()
 {
     if (ui->passwordEdit->echoMode() == QLineEdit::Password) {
+        ui->showPassButton->setText("Hide");
         ui->passwordEdit->setEchoMode(QLineEdit::Normal);
     } else {
+        ui->showPassButton->setText("Show");
         ui->passwordEdit->setEchoMode(QLineEdit::Password);
     }
 }
