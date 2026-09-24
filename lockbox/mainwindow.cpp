@@ -13,10 +13,6 @@ MainWindow::MainWindow(Vault& vault, QWidget *parent)
     //QString filepath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/vault.json";
     QString testing_filepath = "vault.json";
 
-    //Vault setup and data load
-    vault = Vault();
-    vault.load(testing_filepath);
-
     //Add to account list
     for (const Account& account : vault.getAccounts()) {
         ui->accountList->addItem(account.getService());
@@ -90,7 +86,8 @@ void MainWindow::on_deleteAccButton_clicked()
 void MainWindow::on_copyPasswordButton_clicked()
 {
     if (activeAccountIndex == -1) return;
-    ui->passwordEdit->copy();
+    QApplication::clipboard()->setText(ui->passwordEdit->text());
+
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {

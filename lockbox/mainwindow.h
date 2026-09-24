@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
+#include <QClipboard>
 #include "vault.h"
 
 QT_BEGIN_NAMESPACE
