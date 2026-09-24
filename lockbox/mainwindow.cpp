@@ -49,6 +49,8 @@ void MainWindow::on_accountList_currentRowChanged(int rowIndex)
 
 void MainWindow::on_addAccountButton_clicked()
 {
+    if (ui->serviceNameEdit->text().isEmpty()) return;
+
     //Insert new empty account
     vault.addAccount("", "", ui->serviceNameEdit->text(), "");
     ui->accountList->addItem(ui->serviceNameEdit->text());
@@ -87,7 +89,6 @@ void MainWindow::on_deleteAccButton_clicked()
     } else {
         ui->accountList->takeItem(activeAccountIndex);
         vault.removeAccount(activeAccountIndex);
-        activeAccountIndex = -1;
         deleteConfirmation = false;
     }
 }
