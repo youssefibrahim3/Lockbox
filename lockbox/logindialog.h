@@ -13,7 +13,7 @@ class LoginDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit LoginDialog(QWidget *parent = nullptr);
+    explicit LoginDialog(Vault& vault, QWidget *parent = nullptr);
     ~LoginDialog();
 
 private slots:

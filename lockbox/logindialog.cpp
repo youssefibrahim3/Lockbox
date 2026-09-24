@@ -4,6 +4,7 @@
 LoginDialog::LoginDialog(Vault& vault, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::LoginDialog)
+    , vault(vault)
 {
     ui->setupUi(this);
 }
