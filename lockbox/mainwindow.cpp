@@ -2,7 +2,7 @@
 #include "./ui_mainwindow.h"
 #include <QStandardPaths>
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(Vault& vault, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , vault(vault)
