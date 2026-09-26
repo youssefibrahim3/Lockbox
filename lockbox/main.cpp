@@ -3,9 +3,14 @@
 #include "createpassdialog.h"
 #include "vault.h"
 #include <QApplication>
+#include <sodium.h>
 
 int main(int argc, char *argv[])
 {
+    if (sodium_init() < 0) {
+        qDebug() << "Libsodium failed to initialize, exiting program";
+        return 0;
+    }
     QApplication a(argc, argv);
 
     Vault vault;
