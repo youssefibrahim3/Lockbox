@@ -15,6 +15,7 @@ public:
     QString decrypt(QString encrypted);
 private:
     unsigned char pwKey[crypto_secretbox_KEYBYTES];
+    unsigned char salt[crypto_pwhash_SALTBYTES];
 };
 
 #endif // ENCRYPTION_H

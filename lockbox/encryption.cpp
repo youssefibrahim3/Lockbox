@@ -3,8 +3,6 @@
 Encryption::Encryption() {}
 
 bool Encryption::deriveKey(QString pass) {
-    unsigned char salt[crypto_pwhash_SALTBYTES];
-
     QByteArray password = pass.toUtf8(); //converting to utf-8, then converting to const char* using constData()
 
     randombytes_buf(salt, sizeof(salt));
