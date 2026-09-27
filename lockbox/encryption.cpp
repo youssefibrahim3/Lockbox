@@ -35,4 +35,6 @@ QByteArray Encryption::decrypt(QByteArray ciphertext) {
     if (crypto_secretbox_open_easy(decryptedMessage,reinterpret_cast<const unsigned char*>(ciphertext.constData()), ciphertext.size(), nonce, pwKey) != 0) {
 
     }
+
+    return QByteArray(reinterpret_cast<const char*>(decryptedMessage));
 }
