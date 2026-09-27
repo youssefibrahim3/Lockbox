@@ -29,5 +29,10 @@ QByteArray Encryption::encrypt(QByteArray plaintext) {
 }
 
 QByteArray Encryption::decrypt(QByteArray ciphertext) {
+    unsigned char decryptedMessage[crypto_secretbox_MACBYTES + ciphertext.size()];
+    unsigned char nonce[crypto_secretbox_NONCEBYTES];
 
+    if (crypto_secretbox_open_easy(decryptedMessage,reinterpret_cast<const unsigned char*>(ciphertext.constData()), ciphertext.size(), nonce, pwKey) != 0) {
+
+    }
 }
