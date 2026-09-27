@@ -11,8 +11,8 @@ public:
 
     bool deriveKey(QString pass);
 
-    bool encrypt(QString pass);
-    QString decrypt(QString encrypted);
+    QByteArray encrypt(QByteArray plaintext);
+    QByteArray decrypt(QByteArray ciphertext);
 private:
     unsigned char pwKey[crypto_secretbox_KEYBYTES];
     unsigned char salt[crypto_pwhash_SALTBYTES];
