@@ -47,5 +47,5 @@ QByteArray Encryption::decrypt(QByteArray ciphertext) {
     }
 
     return QByteArray(reinterpret_cast<const char*>(decryptedMessage),
-                      ciphertext.size() - crypto_secretbox_MACBYTES);
+                      ciphertext.size() - crypto_secretbox_MACBYTES - crypto_secretbox_NONCEBYTES);
 }
