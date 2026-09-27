@@ -13,6 +13,7 @@ class Vault
 {
 public:
     Vault();
+    Vault(QString masterPassword);
 
     std::vector<Account> getAccounts()const { return accounts; }
     void setAccounts(std::vector<Account> newAccounts) { accounts = newAccounts; }
@@ -34,6 +35,7 @@ public:
 private:
     std::vector<Account> accounts;
     QString masterPass = "";
+    Encryption encryption;
 };
 
 #endif // VAULT_H
