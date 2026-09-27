@@ -21,9 +21,11 @@ QByteArray Encryption::encrypt(QByteArray plaintext) {
     unsigned char nonce[crypto_secretbox_NONCEBYTES];
     randombytes_buf(nonce, sizeof(nonce));
 
-    if (crypto_secretbox_easy(encryptedMessage, plaintext.constData(), plaintext.size(), nonce, pwKey) != 0) {
+    if (crypto_secretbox_easy(encryptedMessage, reinterpret_cast<const unsigned char*>(plaintext.constData()), plaintext.size(), nonce, pwKey) != 0) {
 
     }
+
+    return QByteArray(reinterpret_cast<const char*>(encryptedMessage));
 }
 
 QByteArray Encryption::decrypt(QByteArray ciphertext) {
