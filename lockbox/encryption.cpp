@@ -42,9 +42,10 @@ QByteArray Encryption::decrypt(QByteArray ciphertext) {
     const unsigned char* nonce = reinterpret_cast<const unsigned char*>(ciphertext.constData());
     const unsigned char* encryptedMessage = reinterpret_cast<const unsigned char*>(ciphertext.constData()+crypto_secretbox_NONCEBYTES);
 
-    if (crypto_secretbox_open_easy(decryptedMessage,encryptedMessage, ciphertext.size(), nonce, pwKey) != 0) {
+    if (crypto_secretbox_open_easy(decryptedMessage,encryptedMessage, ciphertext.size() - crypto_secretbox_NONCEBYTES, nonce, pwKey) != 0) {
         return {};
     }
 
-    return QByteArray(reinterpret_cast<const char*>(decryptedMessage));
+    return QByteArray(reinterpret_cast<const char*>(decryptedMessage),
+                      ciphertext.size() - crypto_secretbox_MACBYTES);
 }
