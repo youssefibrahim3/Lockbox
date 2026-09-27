@@ -6,6 +6,10 @@ void Encryption::generateSalt() {
     randombytes_buf(salt, sizeof(salt));
 }
 
+void Encryption::setSalt(const QByteArray& salt) {
+    memcpy(this->salt, salt.constData(), crypto_pwhash_SALTBYTES);
+}
+
 bool Encryption::deriveKey(QString pass) {
     QByteArray password = pass.toUtf8(); //converting to utf-8, then converting to const char* using constData()
 
