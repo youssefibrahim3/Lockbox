@@ -16,7 +16,7 @@ bool Encryption::deriveKey(QString pass) {
     return true;
 }
 
-QByteArray Encryption::encrypt(QByteArray plaintext) {
+QByteArray Encryption::encrypt(QByteArray plaintext) { // returns [nonce][ciphertext]
     unsigned char encryptedMessage[crypto_secretbox_MACBYTES + plaintext.size()];
     unsigned char nonce[crypto_secretbox_NONCEBYTES];
     randombytes_buf(nonce, sizeof(nonce));
@@ -25,7 +25,16 @@ QByteArray Encryption::encrypt(QByteArray plaintext) {
 
     }
 
-    return QByteArray(reinterpret_cast<const char*>(encryptedMessage));
+    QByteArray result;
+    result.append(
+        reinterpret_cast<const char*>(nonce),
+        crypto_secretbox_NONCEBYTES
+        );
+    result.append(
+        reinterpret_cast<const char*>(encryptedMessage),
+        crypto_secretbox_MACBYTES + plaintext.size()
+        );
+    return result;
 }
 
 QByteArray Encryption::decrypt(QByteArray ciphertext) {
