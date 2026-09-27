@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include <QFile>
 #include "account.h"
+#include "encryption.h"
 
 class Vault
 {
