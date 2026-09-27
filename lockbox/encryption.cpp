@@ -22,7 +22,7 @@ QByteArray Encryption::encrypt(QByteArray plaintext) { // returns [nonce][cipher
     randombytes_buf(nonce, sizeof(nonce));
 
     if (crypto_secretbox_easy(encryptedMessage, reinterpret_cast<const unsigned char*>(plaintext.constData()), plaintext.size(), nonce, pwKey) != 0) {
-
+        return {};
     }
 
     QByteArray result;
@@ -39,10 +39,11 @@ QByteArray Encryption::encrypt(QByteArray plaintext) { // returns [nonce][cipher
 
 QByteArray Encryption::decrypt(QByteArray ciphertext) {
     unsigned char decryptedMessage[crypto_secretbox_MACBYTES + ciphertext.size()];
-    unsigned char nonce[crypto_secretbox_NONCEBYTES];
+    const unsigned char* nonce = reinterpret_cast<const unsigned char*>(ciphertext.constData());
+    const unsigned char* encryptedMessage = reinterpret_cast<const unsigned char*>(ciphertext.constData()+crypto_secretbox_NONCEBYTES);
 
-    if (crypto_secretbox_open_easy(decryptedMessage,reinterpret_cast<const unsigned char*>(ciphertext.constData()), ciphertext.size(), nonce, pwKey) != 0) {
-
+    if (crypto_secretbox_open_easy(decryptedMessage,encryptedMessage, ciphertext.size(), nonce, pwKey) != 0) {
+        return {};
     }
 
     return QByteArray(reinterpret_cast<const char*>(decryptedMessage));
