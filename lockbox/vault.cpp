@@ -39,12 +39,18 @@ bool Vault::save(const QString& filepath) {
         json_arr.append(json_obj);
     }
 
+    //extra stuff to make encryption of vault data work
+    QJsonObject vault_data;
+    vault_data["vault"] = json_arr;
+    QJsonDocument vault_doc(vault_data);
+    //using toJson() to make the json in bytes: a QByteArray
+    QByteArray encrypted_data = encryption.encrypt(vault_doc.toJson());
+
     QJsonObject vault_obj;
-    vault_obj["vault"] = json_arr;
+    vault_obj["vault"] = QString(encrypted_data.toBase64());
     vault_obj["salt"] = QString(encryption.getSalt().toBase64());
 
     QJsonDocument doc(vault_obj);
-
     QString json_string = doc.toJson();
 
     QFile save_file(filepath);
@@ -78,21 +84,28 @@ bool Vault::load(const QString& filepath, const QString& masterPass) {
 
     accounts.clear();
 
-    encryption.setSalt(loaded_obj["salt"].toString().toUtf8());
+    encryption.setSalt(QByteArray::fromBase64(loaded_obj["salt"].toString().toUtf8()));
 
     if (!encryption.deriveKey(masterPass)) {
         return false;
     }
 
-    QByteArray decrypted_data = encryption.decrypt(save_data);
+    QByteArray decrypted_data = encryption.decrypt(QByteArray::fromBase64(loaded_obj["vault"].toString().toUtf8()));
 
-    const QJsonArray loaded_arr = loaded_obj["vault"].toArray();
+    if (decrypted_data.isEmpty()) {
+        return false;
+    }
+    QJsonDocument decrypted_doc(QJsonDocument::fromJson(decrypted_data));
+    QJsonObject decrypted_obj = decrypted_doc.object();
+
+    const QJsonArray loaded_arr = decrypted_obj["vault"].toArray();
+
     for (const QJsonValue &account : loaded_arr) {
         QJsonObject account_obj = account.toObject();
         addAccount(account_obj["username"].toString(),
                    account_obj["password"].toString(),
                    account_obj["service"].toString(),
-                   account["notes"].toString());
+                   account_obj["notes"].toString());
     }
 
     return true;
