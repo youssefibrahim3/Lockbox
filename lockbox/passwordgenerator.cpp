@@ -2,7 +2,7 @@
 
 PasswordGenerator::PasswordGenerator() {}
 
-static QString generatePassword(int length) {
+QString PasswordGenerator::generatePassword(int length) {
     // Generates and returns password.
     const QString ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const QString alphabet = "abcdefghijklmnopqrstuvwxyz";

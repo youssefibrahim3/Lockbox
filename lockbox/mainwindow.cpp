@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QStandardPaths>
+#include "passwordgenerator.h"
 
 MainWindow::MainWindow(Vault& vault, QWidget *parent)
     : QMainWindow(parent)
@@ -104,3 +105,10 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     vault.save("vault.json");
     event->accept();
 }
+
+void MainWindow::on_generatePassButton_clicked()
+{
+    QString generatedPassword = PasswordGenerator::generatePassword(20);
+    ui->passwordEdit->setText(generatedPassword);
+}
+

@@ -34,6 +34,8 @@ private slots:
     void on_copyPasswordButton_clicked();
 
     void closeEvent(QCloseEvent *event) override;
+    void on_generatePassButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Vault& vault;
