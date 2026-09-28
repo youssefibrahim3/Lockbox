@@ -13,13 +13,10 @@ class Vault
 {
 public:
     Vault();
-    Vault(QString masterPassword);
+    void initializeSalt(QString masterPassword);
 
     std::vector<Account> getAccounts()const { return accounts; }
     void setAccounts(std::vector<Account> newAccounts) { accounts = newAccounts; }
-
-    void setMasterPass(QString newPass) { masterPass = newPass; }
-    QString getMasterPass() { return masterPass; }
 
     void addAccount(Account account);
     void addAccount(QString username, QString password, QString service, QString notes);
@@ -31,10 +28,9 @@ public:
     int getNumberOfAccounts()const;
 
     bool save(const QString& filepath);
-    bool load(const QString& filepath);
+    bool load(const QString& filepath, const QString& masterPass);
 private:
     std::vector<Account> accounts;
-    QString masterPass = "";
     Encryption encryption;
 };
 

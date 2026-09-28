@@ -2,7 +2,7 @@
 
 Vault::Vault() {}
 
-Vault::Vault(QString masterPassword) {
+void Vault::initializeSalt(QString masterPassword) {
     encryption.generateSalt();
     encryption.deriveKey(masterPassword);
 }
@@ -41,7 +41,6 @@ bool Vault::save(const QString& filepath) {
 
     QJsonObject vault_obj;
     vault_obj["vault"] = json_arr;
-    vault_obj["masterPassword"] = masterPass;
     vault_obj["salt"] = QString(encryption.getSalt().toBase64());
 
     QJsonDocument doc(vault_obj);
@@ -59,7 +58,7 @@ bool Vault::save(const QString& filepath) {
     return true;
 }
 
-bool Vault::load(const QString& filepath) {
+bool Vault::load(const QString& filepath, const QString& masterPass) {
     QFile save_file(filepath);
 
     if (!save_file.open(QIODevice::ReadOnly)) {
@@ -79,8 +78,13 @@ bool Vault::load(const QString& filepath) {
 
     accounts.clear();
 
-    masterPass = loaded_obj["masterPassword"].toString();
     encryption.setSalt(loaded_obj["salt"].toString().toUtf8());
+
+    if (!encryption.deriveKey(masterPass)) {
+        return false;
+    }
+
+    QByteArray decrypted_data = encryption.decrypt(save_data);
 
     const QJsonArray loaded_arr = loaded_obj["vault"].toArray();
     for (const QJsonValue &account : loaded_arr) {
