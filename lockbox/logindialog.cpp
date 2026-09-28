@@ -33,3 +33,7 @@ void LoginDialog::on_showPassButton_clicked()
     }
 }
 
+QString LoginDialog::getPassword()const {
+    return ui->passwordEdit->text();
+}
+

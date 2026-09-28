@@ -16,6 +16,8 @@ public:
     explicit LoginDialog(Vault& vault, QWidget *parent = nullptr);
     ~LoginDialog();
 
+    QString getPassword()const;
+
 private slots:
     void on_loginButton_clicked();
 
