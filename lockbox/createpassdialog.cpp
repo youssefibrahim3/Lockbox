@@ -41,10 +41,10 @@ void CreatePassDialog::on_showPassButton_clicked()
 void CreatePassDialog::on_showConfirmPassButton_clicked()
 {
     if (ui->confirmPasswordEdit->echoMode() == QLineEdit::Password) {
-        ui->showPassButton->setText("Hide");
+        ui->showConfirmPassButton->setText("Hide");
         ui->confirmPasswordEdit->setEchoMode(QLineEdit::Normal);
     } else {
-        ui->showPassButton->setText("Show");
+        ui->showConfirmPassButton->setText("Show");
         ui->confirmPasswordEdit->setEchoMode(QLineEdit::Password);
     }
 }
