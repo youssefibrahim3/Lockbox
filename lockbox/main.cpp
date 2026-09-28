@@ -4,6 +4,7 @@
 #include "vault.h"
 #include <QApplication>
 #include <sodium.h>
+#include <QFile>
 
 int main(int argc, char *argv[])
 {
@@ -14,26 +15,35 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     Vault vault;
-    vault.load("vault.json");
+    if (QFile::exists("vault.json")) {
+        LoginDialog l(vault);
+        if (l.exec() != QDialog::Accepted) {
+            return 0;
+        }
 
-    if (vault.getMasterPass().isEmpty()) { //No master password set, have to make a new one
+        QString masterPassword = l.getPassword();
+
+        if (!vault.load("vault.json", masterPassword)) {
+            return 0;
+        }
+
+    } else {
         CreatePassDialog c;
+        if (c.exec() != QDialog::Accepted) {
+            return 0;
+        }
 
-        if (c.exec() == QDialog::Accepted) {
-            vault.setMasterPass(c.getPassword());
-            vault.save("vault.json");
-        } else {
+        QString masterPassword = c.getPassword();
+        vault.initializeSalt(masterPassword);
+
+        if(!vault.save("vault.json")) {
+            qDebug() << "Failed to save vault";
             return 0;
         }
     }
 
-    LoginDialog l(vault);
+    MainWindow w(vault);
+    w.show();
 
-    if (l.exec() == QDialog::Accepted) {
-        MainWindow w(vault);
-        w.show();
-        return a.exec();
-    }
-
-    return 0;
+    return a.exec();
 }
