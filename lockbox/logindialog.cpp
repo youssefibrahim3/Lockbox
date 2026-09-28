@@ -16,9 +16,7 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::on_loginButton_clicked()
 {
-    if (ui->passwordEdit->text() == vault.getMasterPass()) {
-        QDialog::accept();
-    }
+    QDialog::accept();
 }
 
 
