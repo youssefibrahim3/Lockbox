@@ -29,6 +29,7 @@ QByteArray Encryption::encrypt(QByteArray plaintext) { // returns [nonce][cipher
         return {};
     }
 
+    //data is returned WITH the nonce to allow for decryption using decrypt()
     QByteArray result;
     result.append(
         reinterpret_cast<const char*>(nonce),
