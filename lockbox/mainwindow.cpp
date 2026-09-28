@@ -55,6 +55,7 @@ void MainWindow::on_addAccountButton_clicked()
     //Insert new empty account
     vault.addAccount("", "", ui->serviceNameEdit->text(), "");
     ui->accountList->addItem(ui->serviceNameEdit->text());
+    ui->accountList->setCurrentItem(ui->accountList->item(ui->accountList->count() - 1));
 }
 
 
